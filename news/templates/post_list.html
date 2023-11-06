@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for post in all_items %}
+        <article class="post">
+            <a class="btn btn-default" href="/edit_post/{{post.id}}/"><span class="glyphicon glyphicon-pencil"></span></a>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content|linebreaksbr }}</p>
+            <div class="date">
+                published: {{ post.createdDate }}
+            </div>
+        </article>
+    {% endfor %}
+{% endblock %}
