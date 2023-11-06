@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .forms import PostForms
 from .models import PostsModel
@@ -6,9 +6,10 @@ from django.http import HttpResponseRedirect
 
 # Create your views here.
 
+
 def postView(request):
     form = PostsModel.objects.filter().order_by('-id')
-    return render(request, 'index.html', {'all_items': form})
+    return render(request, 'post_list.html', {'all_items': form})
 
 def addPost(request):
     obj = PostsModel()
@@ -34,10 +35,6 @@ def editPost(request, i):
 
     return render(request, 'edit_post.html', {'form': form})
 
-def deletePost(request, i):
-    obj = PostsModel.objects.get(id=i)
-    obj.delete()
-    return HttpResponseRedirect('/')
 
 
 
